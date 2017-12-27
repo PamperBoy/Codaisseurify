@@ -1,3 +1,8 @@
 <% @artists.each do |artist| %>
-  <p><%= artist.name %></p>
+  <p>
+    <%= link_to artist.name, artist %>
+  </p>
+
+
+
 <%end%>
