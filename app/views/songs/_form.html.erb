@@ -1,3 +1,6 @@
+<%=render "shared/validation_errors", errors: @song.errors%>
+
+
 <%= form_for [@artist, @song] do |f| %>
   <div class="form-group">
     <label>Song name</label>
