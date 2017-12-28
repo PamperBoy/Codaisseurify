@@ -2,6 +2,10 @@
 <h1><%= @artist.name %></h1>
 <% @artist.songs.each do | song |  %>
   <p><%= song.name %></p>
+  <%= link_to 'Delete',
+          artist_song_path(@artist, song),
+                      method: :delete,
+                      data: { confirm: 'Are you sure?' } %>
 <% end%>
 
 <%= link_to "Add song", new_artist_song_path(@artist), class: "btn btn-primary" %>
