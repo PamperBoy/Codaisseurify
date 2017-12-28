@@ -1,5 +1,9 @@
 require 'rails_helper'
 
 RSpec.describe Song, type: :model do
-  pending "add some examples to (or delete) #{__FILE__}"
+  it "is invalid without a song name" do
+    artist = Artist.new(name: "")
+      artist.valid?
+      expect(artist.errors).to have_key(:name)
+  end
 end

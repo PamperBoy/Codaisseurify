@@ -1,5 +1,17 @@
 require 'rails_helper'
 
-RSpec.describe Artist, type: :model do
-  pending "add some examples to (or delete) #{__FILE__}"
+describe Artist, type: :model do
+  it "is invalid without a artist name" do
+    artist = Artist.new(name: "")
+    artist.valid?
+    expect(artist.errors).to have_key(:name)
+  end
+
+  it "is invalid without a unique artist name" do
+    artist1 = Artist.new(name: "Frank").save
+    artist2 = Artist.new(name: "Frank")
+    artist2.valid?
+    expect(artist2.errors).to have_key(:name)
+  end
+
 end
