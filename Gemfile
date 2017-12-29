@@ -7,7 +7,7 @@ end
 
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
-# gem 'rails', '~> 5.1.4'
+gem 'rails', '~> 5.1.4'
 
 
 ruby '2.4.1'
@@ -40,6 +40,7 @@ gem 'jquery-rails', '~> 4.3.1'
 gem 'carrierwave', '0.11.2'
 gem 'cloudinary', '1.2.3'
 
+gem 'faker'
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
@@ -47,7 +48,6 @@ group :development, :test do
   gem 'rspec-rails', '~> 3.5', '>= 3.5.2'
 
   gem 'factory_bot_rails'
-  gem 'faker'
 end
 
 group :test do
