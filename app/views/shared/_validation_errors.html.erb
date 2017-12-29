@@ -1,0 +1,9 @@
+<% if errors.any?%>
+  <div class="alert alert-warning">
+    <strong>Warning!</strong>
+    <p><br></p>
+    <%errors.full_messages.each do |error| %>
+    <p><%=error%></p>
+    <%end%>
+  </div>
+<%end%>
