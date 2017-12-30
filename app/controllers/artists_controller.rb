@@ -1,5 +1,5 @@
   class ArtistsController < ApplicationController
-  before_action :set_artist, only: [:show, :destroy]
+  before_action :set_artist, except: [:index, :new, :create, :delete_all_songs]
 
   def index
     @artists = Artist.all
@@ -15,13 +15,23 @@
     @artist = Artist.new(artist_params)
 
     if @artist.save
-
-        # @artist.image.create(source: source_params)
       @artist.create_image(source: source_params)
 
       redirect_to @artist, notice: "Artist created"
     else
       render :new
+    end
+  end
+
+  def edit; end
+
+  def update
+    if @artist.update(artist_params)
+      @artist.create_image(source: source_params)
+
+      redirect_to @artist, notice: "Artist updated"
+    else
+      render :edit
     end
   end
 
@@ -31,7 +41,15 @@
     redirect_to root_path, notice: "Delete success"
   end
 
+  def delete_all_songs
+    @artist = Artist.find(params[:artist_id])
+
+    @artist.songs.each { | song | song.destroy }
+    redirect_to @artist, notice: "All songs have been removed"
+  end
+
   private
+
 
   def set_artist
     @artist = Artist.find(params[:id])
