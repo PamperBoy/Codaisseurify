@@ -1,4 +1,4 @@
-class ArtistsController < ApplicationController
+  class ArtistsController < ApplicationController
   before_action :set_artist, only: [:show, :destroy]
 
   def index
@@ -15,6 +15,10 @@ class ArtistsController < ApplicationController
     @artist = Artist.new(artist_params)
 
     if @artist.save
+
+        # @artist.image.create(source: source_params)
+      @artist.create_image(source: source_params)
+
       redirect_to @artist, notice: "Artist created"
     else
       render :new
@@ -31,6 +35,11 @@ class ArtistsController < ApplicationController
 
   def set_artist
     @artist = Artist.find(params[:id])
+  end
+
+  def source_params
+    params[:source].present? ? params.require(:source) : []
+
   end
 
   def artist_params

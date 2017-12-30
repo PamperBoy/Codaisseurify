@@ -1,11 +1,18 @@
 <%=render "shared/validation_errors", errors: @artist.errors%>
 
 
-<%= form_for @artist do |f| %>
+<%= form_for @artist, html: { multipart: true } do |f| %>
   <div class="form-group">
     <label>Artist name</label>
     <%= f.text_field :name, placeholder: "Artist name", class: "form-control" %>
   </div>
+
+  <div class="form-group">
+  <span class="btn btn-default">
+    Upload Photos
+    <%= file_field_tag "source", type: :file %>
+  </span>
+</div>
 
   <div class="actions">
     <%= f.submit "Save", class: "btn btn-primary" %>
