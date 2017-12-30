@@ -8,8 +8,11 @@
   </div>
 
   <div class="form-group">
+
   <span class="btn btn-default">
-    Upload Photos
+    <p>Upload Photos</p>
+    <%= image_tag @artist.image.source.thumbnail if @artist.image.present?%>
+    <hr>
     <%= file_field_tag "source", type: :file %>
   </span>
 </div>
