@@ -1,5 +1,7 @@
 
 <h1><%= @artist.name %></h1>
+<%= link_to "Update artist", edit_artist_path(@artist), class: "btn btn-default" %>
+
 <%= image_tag @artist.image.source %>
 <% @artist.songs.each do | song |  %>
   <p><%= song.name %></p>
