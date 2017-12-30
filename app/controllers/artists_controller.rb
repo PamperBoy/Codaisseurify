@@ -15,8 +15,6 @@
     @artist = Artist.new(artist_params)
 
     if @artist.save
-
-        # @artist.image.create(source: source_params)
       @artist.create_image(source: source_params)
 
       redirect_to @artist, notice: "Artist created"
@@ -29,6 +27,8 @@
 
   def update
     if @artist.update(artist_params)
+      @artist.create_image(source: source_params)
+
       redirect_to @artist, notice: "Artist updated"
     else
       render :edit
