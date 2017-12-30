@@ -1,24 +1,33 @@
 
-<h1><%= @artist.name %></h1>
-<%= link_to "Update artist",
+<div class="">
+  <%= image_tag@artist.image.source.thumbnail%>
+  <h1><%= @artist.name %></h1>
+
+  <%= link_to "Update artist",
         edit_artist_path(@artist),
               class:        "btn btn-default" %>
-<%= link_to 'Delete',
+  <%= link_to 'Delete',
         artist_path(@artist),
               class:        "btn btn-danger",
               method:       :delete,
               data:         { confirm: 'Are you sure?' } %>
+</div>
 
-<%= image_tag @artist.image.source %>
+<hr>
+
+<%= button_to 'Remove all', artist_delete_all_songs_path(@artist), method: :get %>
+
+
 <% @artist.songs.each do | song |  %>
   <p><%= song.name %>
-  <span>
-    <%= link_to '',
+    <span>
+      <%= link_to '',
         artist_song_path(@artist, song),
               class:        "btn btn-danger glyphicon glyphicon-trash",
               method:       :delete,
               data:         { confirm: 'Are you sure?' } %>
-  </span></p>
+    </span>
+</p>
 <% end%>
 
 <%= link_to "Add song", new_artist_song_path(@artist), class: "btn btn-primary" %>
