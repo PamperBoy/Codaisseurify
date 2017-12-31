@@ -5,7 +5,10 @@
     @artists = Artist.all
   end
 
-  def show; end
+  def show
+    @song = Song.new
+    @song.artist_id = @artist.id
+  end
 
   def new
     @artist = Artist.new
@@ -57,7 +60,6 @@
 
   def source_params
     params[:source].present? ? params.require(:source) : []
-
   end
 
   def artist_params

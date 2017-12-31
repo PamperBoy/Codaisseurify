@@ -25,11 +25,14 @@
         artist_song_path(@artist, song),
               class:        "btn btn-danger glyphicon glyphicon-trash",
               method:       :delete,
-              data:         { confirm: 'Are you sure?' } %>
+              data:         { confirm: 'Are you sure?' },
+              id:           "song-#{song.id}"
+              %>
     </span>
 </p>
 <% end%>
 
-<%= link_to "Add song", new_artist_song_path(@artist), class: "btn btn-primary" %>
+<hr>
 
+<%= render "shared/form", song: @song %>
 <%= link_to "Back", root_path, class: "btn btn-default" %>
