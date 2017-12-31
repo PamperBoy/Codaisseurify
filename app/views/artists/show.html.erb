@@ -18,19 +18,23 @@
 <%= button_to 'Remove all', artist_delete_all_songs_path(@artist), method: :get %>
 
 
-<% @artist.songs.each do | song |  %>
-  <p><%= song.name %>
-    <span>
-      <%= link_to '',
+<table class="table table-striped" id="artistSongs">
+  <tr>
+    <th colspan="2">Songs</th>
+  </tr>
+    <% @artist.songs.each do | song |  %>
+    <tr>
+      <td><%= song.name %></td>
+      <td style="text-align: right;"><%= link_to '',
         artist_song_path(@artist, song),
               class:        "btn btn-danger glyphicon glyphicon-trash",
               method:       :delete,
               data:         { confirm: 'Are you sure?' },
               id:           "song-#{song.id}"
-              %>
-    </span>
-</p>
-<% end%>
+              %></td>
+    </tr>
+    <% end%>
+</table>
 
 <hr>
 
