@@ -1,5 +1,14 @@
 function createSong(name) {
 
+  var songName = $('<td></td>')
+    .html(name);
+
+  var tableRow = $('<tr></td>')
+    .append(label));
+
+  $("#artistSongs").append( tableRow );
+
+
 }
 
 function submitSong(event) {
