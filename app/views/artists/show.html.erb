@@ -1,20 +1,21 @@
 
-<div class="">
-  <%= image_tag@artist.image.source.thumbnail%>
-  <h1><%= @artist.name %></h1>
+<div class="artist-container">
+  <div class="artist-image" style="background-image: url('<%= @artist.image.source%>');"></div>
 
-  <%= link_to "Update artist",
-        edit_artist_path(@artist),
-              class:        "btn btn-default" %>
-  <%= link_to 'Delete',
-        artist_path(@artist),
-              class:        "btn btn-danger",
-              method:       :delete,
-              data:         { confirm: 'Are you sure?' } %>
+  <div class="artist-info">
+
+    <h1><%= @artist.name %></h1>
+
+    <%= link_to "Update artist",
+          edit_artist_path(@artist),
+                class:        "custom-btn btn" %>
+    <%= link_to 'Delete',
+          artist_path(@artist),
+                class:        "btn btn-danger",
+                method:       :delete,
+                data:         { confirm: 'Are you sure?' } %>
+  </div>
 </div>
-
-<hr>
-
 
 
 <a class="btn btn-danger"
@@ -25,15 +26,15 @@
 </a>
 
 
-<table class="table table-striped" id="artistSongs">
+<table class="table" id="artistSongs">
   <tr>
-    <th colspan="2">Songs</th>
+    <th style="padding: 20px;" colspan="2">Songs</th>
   </tr>
     <% @artist.songs.each do | song |  %>
     <tr data-id=<%=song.id%>>
-      <td><%= song.name %></td>
+      <td style="padding: 20px;"><%= song.name %></td>
       <td style="text-align: right;">
-        <a class="btn btn-danger glyphicon glyphicon-trash song-delete" id="song-<%=song.id%>"></a>
+        <a class="trashcan glyphicon glyphicon-trash song-delete" id="song-<%=song.id%>"></a>
     <% end%>
 </table>
 

@@ -1,2 +1,78 @@
 @import "bootstrap-sprockets";
 @import "bootstrap";
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  background-color: #232323;
+  padding: 40px;
+}
+
+.artist-container {
+  display: flex;
+  align-items: center;
+}
+
+.artist-info {
+  margin-left: 60px;
+}
+
+.custom-btn {
+  border-color: none !important;
+
+  background-color: white;
+  color: black;
+}
+
+.btn {
+  border-radius: 50px;
+}
+
+.trashcan {
+  text-decoration: none;
+  color: #d43f3a;
+  cursor: pointer;
+  line-height: 3em;
+
+}
+
+.trashcan:hover {
+  color: white;
+  text-decoration: none;
+}
+
+#delete-all-songs {
+  margin: 40px 0;
+}
+
+tr {
+  color: white;
+  font-family: 'Roboto', sans-serif;
+}
+
+td {
+  padding: 20px;
+
+}
+
+
+
+
+
+
+.artist-image {
+  width: 400px;
+  height: 400px;
+  background-repeat: no-repeat;
+  background-position: center center;
+  background-size: cover;
+}
+
+h1 {
+  font-family: 'Roboto', sans-serif;
+  font-size: 40px;
+  font-weight: 900;
+  color: white;
+}
