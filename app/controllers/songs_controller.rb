@@ -18,14 +18,6 @@ class SongsController < ApplicationController
         format.json { render json: @song.errors, status: :unprocessable_entity }
       end
     end
-
-
-
-    # if @song.save
-    #   redirect_to @artist, notice: "Song created"
-    # else
-    #   render :new
-    # end
   end
 
   def destroy

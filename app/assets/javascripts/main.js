@@ -12,8 +12,6 @@ function createSong(name) {
     dataType: "json"
   })
   .done(function(data) {
-    console.log(data);
-
 
     var songName = $('<td></td>')
       .html(name);
@@ -24,8 +22,7 @@ function createSong(name) {
     $("#artistSongs").append( tableRow );
   })
   .fail(function(error) {
-    console.log(error)
-    error_message = error.responseJSON.title[0];
+    error_message = error.responseJSON.name[0];
     showError(error_message);
   });
 }
@@ -40,8 +37,14 @@ function showError(message) {
     .append(errorHelpBlock);
 }
 
+function resetErrors() {
+  $("#error_message").remove();
+  $("#formgroup-title").removeClass("has-error");
+}
+
 function submitSong(event) {
   event.preventDefault();
+  resetErrors();
   createSong($("#song_name").val());
   $("#song_name").val(null);
 }
