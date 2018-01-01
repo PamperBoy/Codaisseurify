@@ -15,21 +15,37 @@
 
 <hr>
 
-<%= button_to 'Remove all', artist_delete_all_songs_path(@artist), method: :get %>
 
 
-<% @artist.songs.each do | song |  %>
-  <p><%= song.name %>
-    <span>
-      <%= link_to '',
-        artist_song_path(@artist, song),
-              class:        "btn btn-danger glyphicon glyphicon-trash",
-              method:       :delete,
-              data:         { confirm: 'Are you sure?' } %>
-    </span>
-</p>
-<% end%>
+<a class="btn btn-danger"
+  data-confirm="Are you sure?"
+  id="delete-all-songs">
+    <span class="glyphicon glyphicon-trash"></span>
+    Remove all songs
+</a>
 
-<%= link_to "Add song", new_artist_song_path(@artist), class: "btn btn-primary" %>
 
+<table class="table table-striped" id="artistSongs">
+  <tr>
+    <th colspan="2">Songs</th>
+  </tr>
+    <% @artist.songs.each do | song |  %>
+    <tr data-id=<%=song.id%>>
+      <td><%= song.name %></td>
+      <td style="text-align: right;">
+        <a class="btn btn-danger glyphicon glyphicon-trash song-delete" id="song-<%=song.id%>"></a>
+    <% end%>
+</table>
+
+
+<%= render "shared/form", song: @song %>
 <%= link_to "Back", root_path, class: "btn btn-default" %>
+
+
+<%=# link_to '',
+  #'javascript:;',
+  #      class:        "btn btn-danger glyphicon glyphicon-trash song-delete",
+  #      method:       :delete,
+  #      data:         { confirm: 'Are you sure?' },
+  #      id:           "song-#{song.id}"
+        %>

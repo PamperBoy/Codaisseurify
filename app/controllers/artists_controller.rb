@@ -5,7 +5,10 @@
     @artists = Artist.all
   end
 
-  def show; end
+  def show
+    @song = Song.new
+    @song.artist_id = @artist.id
+  end
 
   def new
     @artist = Artist.new
@@ -41,15 +44,7 @@
     redirect_to root_path, notice: "Delete success"
   end
 
-  def delete_all_songs
-    @artist = Artist.find(params[:artist_id])
-
-    @artist.songs.each { | song | song.destroy }
-    redirect_to @artist, notice: "All songs have been removed"
-  end
-
   private
-
 
   def set_artist
     @artist = Artist.find(params[:id])
@@ -57,7 +52,6 @@
 
   def source_params
     params[:source].present? ? params.require(:source) : []
-
   end
 
   def artist_params
