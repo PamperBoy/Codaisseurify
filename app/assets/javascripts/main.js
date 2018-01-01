@@ -25,6 +25,7 @@ function createSong(name) {
     .append(deleteButton)
 
     var tableRow = $('<tr></td>')
+      .attr('data-id', songId)
       .append(songName).append(deleteSong);
 
     $("#artistSongs").append( tableRow );
@@ -61,8 +62,18 @@ function submitSong(event) {
 }
 
 function deleteSong(event) {
-  event.preventDefault();
-    console.log(this.id)
+  var currentSongId = this.id.replace("song-", "");
+  var pathname = window.location.pathname + "/songs/" + currentSongId;
+
+    $.ajax({
+    type: "DELETE",
+    url: pathname,
+    contentType: "application/json",
+    dataType: "json"
+  })
+  .done(function(data) {
+    $('tr[data-id="' + currentSongId + '"]').remove();
+  });
 }
 
 function bindClick(id) {

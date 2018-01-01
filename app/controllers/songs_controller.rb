@@ -1,5 +1,6 @@
 class SongsController < ApplicationController
   before_action :set_artist
+  before_action :set_song, only: [:destroy]
 
 
   def new
@@ -21,15 +22,21 @@ class SongsController < ApplicationController
   end
 
   def destroy
-    @artist.songs.find(params[:id]).destroy
-
-    redirect_to @artist, notice: "Delete success"
+    @song.destroy
+    respond_to do |format|
+      format.html { redirect_to @artist, notice: 'Song deleted.' }
+      format.json { head :no_content }
+    end
   end
 
   private
 
   def set_artist
     @artist = Artist.find(params[:artist_id])
+  end
+
+  def set_song
+    @song = Song.find(params[:id])
   end
 
   def song_params
