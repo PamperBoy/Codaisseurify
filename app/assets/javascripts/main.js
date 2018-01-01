@@ -61,10 +61,9 @@ function submitSong(event) {
   $("#song_name").val(null);
 }
 
-function deleteSong(event) {
-  var currentSongId = this.id.replace("song-", "");
-  var pathname = window.location.pathname + "/songs/" + currentSongId;
-
+function deleteSong(songId) {
+  // var currentSongId = this.id.replace("song-", "");
+  var pathname = window.location.pathname + "/songs/" + songId;
     $.ajax({
     type: "DELETE",
     url: pathname,
@@ -72,17 +71,30 @@ function deleteSong(event) {
     dataType: "json"
   })
   .done(function(data) {
-    $('tr[data-id="' + currentSongId + '"]').remove();
+    $('tr[data-id="' + songId + '"]').remove();
+  });
+}
+
+function removeThisSong() {
+  var currentSongId = this.id.replace("song-", "");
+  deleteSong(currentSongId);
+}
+
+function removeAllSongs() {
+  $.each($("[data-id]"), function(index, tableRow) {
+    songId = $(tableRow).data('id');
+    deleteSong(songId)
   });
 }
 
 function bindClick(id) {
   var songId = "#song-"+ id;
-  $(songId).bind('click', deleteSong);
+  $(songId).bind('click', removeThisSong);
 }
 
 
 $(document).ready(function() {
   $("#new_song").bind('submit', submitSong);
-  $("a.song-delete").bind('click', deleteSong);
+  $("a.song-delete").bind('click', removeThisSong);
+  $("#delete-all-songs").bind('click', removeAllSongs);
 });

@@ -44,15 +44,7 @@
     redirect_to root_path, notice: "Delete success"
   end
 
-  def delete_all_songs
-    @artist = Artist.find(params[:artist_id])
-
-    @artist.songs.each { | song | song.destroy }
-    redirect_to @artist, notice: "All songs have been removed"
-  end
-
   private
-
 
   def set_artist
     @artist = Artist.find(params[:id])

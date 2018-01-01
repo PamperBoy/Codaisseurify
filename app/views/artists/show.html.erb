@@ -15,7 +15,14 @@
 
 <hr>
 
-<%= button_to 'Remove all', artist_delete_all_songs_path(@artist), method: :get %>
+
+
+<a class="btn btn-danger"
+  data-confirm="Are you sure?"
+  id="delete-all-songs">
+    <span class="glyphicon glyphicon-trash"></span>
+    Remove all songs
+</a>
 
 
 <table class="table table-striped" id="artistSongs">
