@@ -12,7 +12,7 @@ class SongsController < ApplicationController
     respond_to do |format|
       if @song.save
         format.html { redirect_to @artist, notice: "Added #{@song.name} to #{@artist.name}" }
-        format.json { render :show, status: :created, location: @artist }
+        format.json { render json: @song, status: :created }
       else
         format.html { redirect_to @artist }
         format.json { render json: @song.errors, status: :unprocessable_entity }
