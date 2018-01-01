@@ -25,17 +25,22 @@
     <% @artist.songs.each do | song |  %>
     <tr>
       <td><%= song.name %></td>
-      <td style="text-align: right;"><%= link_to '',
-        artist_song_path(@artist, song),
-              class:        "btn btn-danger glyphicon glyphicon-trash",
-              method:       :delete,
-              data:         { confirm: 'Are you sure?' },
-              id:           "song-#{song.id}"
-              %></td>
-    </tr>
+      <td style="text-align: right;">
+        <a class="btn btn-danger glyphicon glyphicon-trash song-delete" id="song-<%=song.id%>"></a>
+
+
     <% end%>
 </table>
 
 
 <%= render "shared/form", song: @song %>
 <%= link_to "Back", root_path, class: "btn btn-default" %>
+
+
+<%=# link_to '',
+  #'javascript:;',
+  #      class:        "btn btn-danger glyphicon glyphicon-trash song-delete",
+  #      method:       :delete,
+  #      data:         { confirm: 'Are you sure?' },
+  #      id:           "song-#{song.id}"
+        %>
